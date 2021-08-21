@@ -40,3 +40,79 @@ class Person(val name: String)
 val -> read-only (getter만 생성)
 var -> read & write (getter, setter 생성)
 
+### 커스텀 접근자
+```kotlin
+class Rectangle(val height: Int, val width: Int) {
+    val isSquare: Boolean
+    get() {
+        return height == width
+    }
+}
+```
+
+## 선택 표현과 처리: enum과 when  
+### enum  
+```kotlin
+enum class Color(val r: Int, val g: Int, val b: Int) {
+    RED(255, 0, 0), ORANGE(255, 165, 0) // ...
+    
+    fun rgb() {
+        println("$r, $g, $b")
+    }
+}
+```
+
+### when  
+```kotlin
+when (color) {
+    Color.RED -> "빨강"
+    Color.ORANGE -> "주황"
+}
+```
+
+```kotlin
+when (color) {
+    Color.RED, Color.ORANGE, Color.GREEN -> "신호등 색"
+}
+```
+
+```kotlin
+fun mix(color1: Color, color2: Color) {
+    when (setOf(color1, color2)) {
+        setOf(Color.RED, Color.YELLOW) -> ORANGE
+        else -> // ~~~
+    }
+}
+```
+
+## while과 for 루프
+### while
+java와 동일
+
+### for
+구간 설정 ex) 1..10
+```kotlin
+for (i in 1..10) {
+    println(i)
+}
+```
+```kotlin
+for (i in 100 downTo 1 step 2)
+```
+```kotlin
+for (i in 1 until 100)
+```
+```kotlin
+for (c in 'A'..'F') {
+    val binary = Integer.toBinaryString(c.toInt())
+}
+```
+
+```kotlin
+for ((letter, binary) in binaryReps) {
+    println("$letter = $binary")
+}
+```
+
+
+
